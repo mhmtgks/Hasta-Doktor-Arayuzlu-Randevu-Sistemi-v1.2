@@ -76,6 +76,7 @@ namespace PROJECT_ALPHA
             {
 
             }
+            
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)

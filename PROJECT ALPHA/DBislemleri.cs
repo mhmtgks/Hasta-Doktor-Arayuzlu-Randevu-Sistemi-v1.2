@@ -22,17 +22,10 @@ namespace PROJECT_ALPHA
             {
                 string sql = "select id from giriş where kullanıcıadı=@pkadı and Şifre=@psifre";
                 SqlCommand komut = new SqlCommand(sql, baglanti);
-                komut.Parameters.AddWithValue("@pkadı", kadi);
                 komut.Parameters.AddWithValue("@psifre", sifre);
                 SqlDataAdapter adaptor = new SqlDataAdapter(komut);
                 DataSet sonucDS = new DataSet();
-                baglanti.Open();
-                SqlDataReader rdr = komut.ExecuteReader();
-                while (rdr.Read())
-                {
-                    id = rdr.GetInt32(0);
-                }
-                baglanti.Close();
+                id=readint(komut,kadi);
                 baglanti.Open();
                 adaptor.Fill(sonucDS);
                 baglanti.Close();
@@ -54,16 +47,8 @@ namespace PROJECT_ALPHA
             SqlCommand komut = new SqlCommand();
             komut.CommandText = sql;
             komut.Connection = baglanti;
-
-            komut.Parameters.AddWithValue("@pAd", ad);
-            komut.Parameters.AddWithValue("@pSoyad", soyad);
-            komut.Parameters.AddWithValue("@ptc", tc);
-            komut.Parameters.AddWithValue("@padr", adres);
-            komut.Parameters.AddWithValue("@pdt", dt);
-
-            baglanti.Open();
-            komut.ExecuteNonQuery();
-            baglanti.Close();
+            komut = adblock(komut, ad, soyad, tc, adres, dt);
+            updatecommand(komut);
 
 
         }
@@ -80,9 +65,7 @@ namespace PROJECT_ALPHA
                 komut.Parameters.AddWithValue("@psifre", şifre);
                 komut.Parameters.AddWithValue("@ptc", tip);
                 komut.Parameters.AddWithValue("@pidd", pid);
-                baglanti.Open();
-                komut.ExecuteNonQuery();
-                baglanti.Close();
+                updatecommand(komut);
             }
             catch (System.Data.SqlClient.SqlException)
             {
@@ -95,32 +78,14 @@ namespace PROJECT_ALPHA
         {
             string sql = "select id from Bilgi where kimlikno=@pkadı";
             SqlCommand komut = new SqlCommand(sql, baglanti);
-            komut.Parameters.AddWithValue("@pkadı", kadi);
-            SqlDataAdapter adaptor = new SqlDataAdapter(komut);
-            DataSet sonucDS = new DataSet();
-            baglanti.Open();
-            SqlDataReader rdr = komut.ExecuteReader();
-            while (rdr.Read())
-            {
-                id = rdr.GetInt32(0);
-            }
-            baglanti.Close();
+            id = readint(komut,kadi);
             return id;
         }
         public static int tipçekme(string kadi)
         {
             string sql = "select tip from giriş where kullanıcıadı=@pkadı";
             SqlCommand komut = new SqlCommand(sql, baglanti);
-            komut.Parameters.AddWithValue("@pkadı", kadi);
-            SqlDataAdapter adaptor = new SqlDataAdapter(komut);
-            DataSet sonucDS = new DataSet();
-            baglanti.Open();
-            SqlDataReader rdr = komut.ExecuteReader();
-            while (rdr.Read())
-            {
-                tip = rdr.GetInt32(0);
-            }
-            baglanti.Close();
+            tip = readint(komut,kadi);
             return tip;
         }
         public static int bilgiyükleme()
@@ -149,31 +114,15 @@ namespace PROJECT_ALPHA
         {
             string sql = "update Bilgi set adı=@padi, soyad=@psoyad,adres=@padr, DoğumTarihi=@pdt where ID=@pkid";
             SqlCommand komut = new SqlCommand(sql, baglanti);
-            komut.Parameters.AddWithValue("@padi", ad);
-            komut.Parameters.AddWithValue("@psoyad", soyad);
-            komut.Parameters.AddWithValue("@pkid", id);
-            komut.Parameters.AddWithValue("@padr", adr);
-            komut.Parameters.AddWithValue("@pdt", dt);
-
-            baglanti.Open();
-            komut.ExecuteNonQuery();
-            baglanti.Close();
+            komut=adblock(komut,ad,soyad, id.ToString(), adr,dt);
+            updatecommand(komut);
 
         }
         public static DataSet sehirlericekk()
         {
             string sql = "select * from Sehir";
             SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
-
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-            DataSet ulkelerDS = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(ulkelerDS);
-            baglanti.Close();
-            return ulkelerDS;
+            return dataçek(sql, komut);
 
         }
         public static DataSet drcek(int hassstid, int polid)
@@ -182,17 +131,7 @@ namespace PROJECT_ALPHA
             SqlCommand komut = new SqlCommand();
             komut.Parameters.AddWithValue("@pid", hassstid);
             komut.Parameters.AddWithValue("@ppid", polid);
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
-
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet semtlerds = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(semtlerds);
-            baglanti.Close();
-            return semtlerds;
+            return dataçek(sql, komut);
 
         }
         public static DataSet hastcekk(int hastid)
@@ -200,34 +139,14 @@ namespace PROJECT_ALPHA
             string sql = "select hasteneadı,hastaneid from Hastaneler where sehirid=@pid";
             SqlCommand komut = new SqlCommand();
             komut.Parameters.AddWithValue("@pid", hastid);
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
-
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet hastaneDS = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(hastaneDS);
-            baglanti.Close();
-            return hastaneDS;
+            return dataçek(sql, komut);
 
         }
         public static DataSet polcek()
         {
             string sql = "select PoliklinikAdı,polid from Pol1";
             SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
-
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet pol = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(pol);
-            baglanti.Close();
-            return pol;
+            return dataçek(sql, komut);
 
         }
 
@@ -235,15 +154,8 @@ namespace PROJECT_ALPHA
         {
             string sql = "update Bilgi set adı=@padi, soyad=@psoyad,adres=@padr, DoğumTarihi=@pdt where ID=@pkid";
             SqlCommand komut = new SqlCommand(sql, baglanti);
-            komut.Parameters.AddWithValue("@padi", ad);
-            komut.Parameters.AddWithValue("@psoyad", soyad);
-            komut.Parameters.AddWithValue("@pkid", id);
-            komut.Parameters.AddWithValue("@padr", adr);
-            komut.Parameters.AddWithValue("@pdt", dt);
-
-            baglanti.Open();
-            komut.ExecuteNonQuery();
-            baglanti.Close();
+            komut = adblock(komut, ad, soyad, id.ToString(), adr, dt);
+            updatecommand(komut);
 
         }
         public static void Eklerand(int did, int polid, string tarih, string doktornotu,int saat)
@@ -260,10 +172,7 @@ namespace PROJECT_ALPHA
             komut.Parameters.AddWithValue("@pdnt", doktornotu);
             komut.Parameters.AddWithValue("@prdt", rdt);
             komut.Parameters.AddWithValue("@psaatid", saat);
-
-            baglanti.Open();
-            komut.ExecuteNonQuery();
-            baglanti.Close();
+            updatecommand(komut);
 
 
         }
@@ -271,56 +180,27 @@ namespace PROJECT_ALPHA
         {
             string sql = "select * from Randevular where doktorid=@pdid and Gün=@pgn and saatid=@psid ";
             SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
             komut.Parameters.AddWithValue("@pdid", did);
             komut.Parameters.AddWithValue("@pgn", tarih);
             komut.Parameters.AddWithValue("@psid", saat);
-
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet pol = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(pol);
-            baglanti.Close();
-            return pol;
+            return dataçek(sql, komut);
 
         }
         public static DataSet güncelrand()
         {
             string sql = "select * from Randevular where kullanıcıid=@pdid and randdurum=''";
             SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
             komut.Parameters.AddWithValue("@pdid", id);
+            return dataçek(sql, komut);
 
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet günrand = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(günrand);
-            baglanti.Close();
-            return günrand;
 
         }
         public static DataSet eskirand()
         {
             string sql = "select * from Randevular where kullanıcıid=@pdid and randdurum='1'";
             SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
             komut.Parameters.AddWithValue("@pdid", id);
-
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet günrand = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(günrand);
-            baglanti.Close();
-            return günrand;
+            return dataçek(sql, komut);
 
         }
         public static string dradi(int id)
@@ -414,28 +294,16 @@ namespace PROJECT_ALPHA
             string sql = "DELETE FROM Randevular WHERE randid=@pid";
             SqlCommand komut = new SqlCommand(sql, baglanti);
             komut.Parameters.AddWithValue("@pid", randid);
-
-            baglanti.Open();
-            komut.ExecuteNonQuery();
-            baglanti.Close();
+            updatecommand(komut);
 
         }
         public static DataSet güncelranddr()
         {
             string sql = "select * from Randevular where doktorid=@pdid and randdurum=''";
             SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
             komut.Parameters.AddWithValue("@pdid", id);
+            return dataçek(sql, komut);
 
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet günrand = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(günrand);
-            baglanti.Close();
-            return günrand;
 
         }
         public static int bilgiyüklemehst(int hid)
@@ -463,35 +331,17 @@ namespace PROJECT_ALPHA
         {
             string sql = "select * from Randevular where doktorid=@pdid and randdurum=1 and kullanıcıid=@phid";
             SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
             komut.Parameters.AddWithValue("@pdid", id);
             komut.Parameters.AddWithValue("@phid", hiddb);
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet günrand = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(günrand);
-            baglanti.Close();
-            return günrand;
+            return DBislemleri.dataçek(sql, komut);
 
         }
         public static DataSet tümmuayne()
         {
             string sql = "select * from Randevular where randdurum=1 and kullanıcıid=@phid";
             SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
             komut.Parameters.AddWithValue("@phid", hiddb);
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-
-            DataSet günrand = new DataSet();
-            baglanti.Open();
-            adaptor.Fill(günrand);
-            baglanti.Close();
-            return günrand;
+            return DBislemleri.dataçek(sql, komut);
 
         }
         public static void teshis(int randid, string dnotu)
@@ -500,28 +350,57 @@ namespace PROJECT_ALPHA
             SqlCommand komut = new SqlCommand(sql, baglanti);
             komut.Parameters.AddWithValue("@pnot", dnotu);
             komut.Parameters.AddWithValue("@pkid", randid);
+            updatecommand(komut);
+
+
+        }
+        public static DataSet saatcek()
+        {
+            SqlCommand komut = new SqlCommand();
+            string sql = "select * from Saatt";
+            return DBislemleri.dataçek(sql,komut);
+
+        }
+        public static DataSet dataçek(String sql,SqlCommand komut)
+        { 
+            komut.CommandText = sql;
+            komut.Connection = baglanti;
+            SqlDataAdapter adaptor = new SqlDataAdapter();
+            adaptor.SelectCommand = komut;
+            DataSet ds = new DataSet();
+            baglanti.Open();
+            adaptor.Fill(ds);
+            baglanti.Close();
+            return ds;
+        }
+        public static void updatecommand(SqlCommand komut)
+        {
             baglanti.Open();
             komut.ExecuteNonQuery();
             baglanti.Close();
 
         }
-        public static DataSet saatcek()
+        public static SqlCommand adblock (SqlCommand komut, string ad, string soyad, string tc, string adr, string dt)
         {
-            string sql = "select * from Saatt";
-            SqlCommand komut = new SqlCommand();
-            komut.CommandText = sql;
-            komut.Connection = baglanti;
-
-            SqlDataAdapter adaptor = new SqlDataAdapter();
-            adaptor.SelectCommand = komut;
-            DataSet ulkelerDS = new DataSet();
+            komut.Parameters.AddWithValue("@padi", ad);
+            komut.Parameters.AddWithValue("@psoyad", soyad);      
+            komut.Parameters.AddWithValue("@pkid", tc);
+            komut.Parameters.AddWithValue("@padr", adr);
+            komut.Parameters.AddWithValue("@pdt", dt);
+            return komut;
+        }
+        public static int readint (SqlCommand komut,string kadi)
+        {
+            int x = 0;
+            komut.Parameters.AddWithValue("@pkadı", kadi);
             baglanti.Open();
-            adaptor.Fill(ulkelerDS);
+            SqlDataReader rdr = komut.ExecuteReader();
+            while (rdr.Read())
+            {
+                x = rdr.GetInt32(0);//
+            }
             baglanti.Close();
-            return ulkelerDS;
-
-
-
+            return x;
         }
     }
 }
