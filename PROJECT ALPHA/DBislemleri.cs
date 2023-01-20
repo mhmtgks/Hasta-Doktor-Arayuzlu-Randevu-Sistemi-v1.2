@@ -47,7 +47,11 @@ namespace PROJECT_ALPHA
             SqlCommand komut = new SqlCommand();
             komut.CommandText = sql;
             komut.Connection = baglanti;
-            komut = adblock(komut, ad, soyad, tc, adres, dt);
+            komut.Parameters.AddWithValue("@pAd",ad );
+            komut.Parameters.AddWithValue("@pSoyad", soyad);
+            komut.Parameters.AddWithValue("@ptc", tc);
+            komut.Parameters.AddWithValue("@padr", adres);
+            komut.Parameters.AddWithValue("@pdt", dt);
             updatecommand(komut);
 
 
@@ -56,11 +60,12 @@ namespace PROJECT_ALPHA
         {
             try
             {
+                string trry= "";
                 string sql = "insert into giriş values (@pkad,@psifre,@ptc,@pidd)";
                 SqlCommand komut = new SqlCommand();
                 komut.CommandText = sql;
                 komut.Connection = baglanti;
-
+                komut.Parameters.AddWithValue("@pAd", trry);
                 komut.Parameters.AddWithValue("@pkad", kullanıcıadı);
                 komut.Parameters.AddWithValue("@psifre", şifre);
                 komut.Parameters.AddWithValue("@ptc", tip);
@@ -378,6 +383,7 @@ namespace PROJECT_ALPHA
             baglanti.Open();
             komut.ExecuteNonQuery();
             baglanti.Close();
+            
 
         }
         public static SqlCommand adblock (SqlCommand komut, string ad, string soyad, string tc, string adr, string dt)

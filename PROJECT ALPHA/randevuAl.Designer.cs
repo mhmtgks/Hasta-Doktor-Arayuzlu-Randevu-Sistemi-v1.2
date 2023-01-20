@@ -56,7 +56,7 @@ namespace PROJECT_ALPHA
             this.label1.Location = new System.Drawing.Point(21, 64);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(77, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "ŞEHİR          :";
             // 
@@ -66,7 +66,7 @@ namespace PROJECT_ALPHA
             this.label2.Location = new System.Drawing.Point(21, 235);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.Size = new System.Drawing.Size(75, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "TARİH          :";
             // 
@@ -76,7 +76,7 @@ namespace PROJECT_ALPHA
             this.label3.Location = new System.Drawing.Point(303, 163);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
+            this.label3.Size = new System.Drawing.Size(76, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "DOKTOR     :";
             // 
@@ -86,7 +86,7 @@ namespace PROJECT_ALPHA
             this.label4.Location = new System.Drawing.Point(26, 163);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.Size = new System.Drawing.Size(81, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "POLİKLİNİK  :";
             // 
@@ -96,7 +96,7 @@ namespace PROJECT_ALPHA
             this.label5.Location = new System.Drawing.Point(26, 113);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.Size = new System.Drawing.Size(77, 15);
             this.label5.TabIndex = 4;
             this.label5.Text = "HASTANE    :";
             // 
@@ -104,7 +104,7 @@ namespace PROJECT_ALPHA
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(103, 56);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(465, 21);
             this.comboBox1.TabIndex = 5;
@@ -113,7 +113,7 @@ namespace PROJECT_ALPHA
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(288, 304);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 52);
             this.button1.TabIndex = 10;
@@ -127,14 +127,14 @@ namespace PROJECT_ALPHA
             this.label6.Location = new System.Drawing.Point(264, 28);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.Size = new System.Drawing.Size(82, 15);
             this.label6.TabIndex = 11;
             this.label6.Text = "RANDEVU AL";
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(447, 304);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(144, 52);
             this.button2.TabIndex = 12;
@@ -145,7 +145,7 @@ namespace PROJECT_ALPHA
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(107, 235);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(465, 20);
             this.dateTimePicker1.TabIndex = 13;
@@ -154,7 +154,7 @@ namespace PROJECT_ALPHA
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(376, 156);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 49;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -168,7 +168,7 @@ namespace PROJECT_ALPHA
             this.dataGridView2.ColumnHeadersVisible = false;
             this.dataGridView2.Cursor = System.Windows.Forms.Cursors.Default;
             this.dataGridView2.Location = new System.Drawing.Point(108, 156);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 49;
             this.dataGridView2.RowTemplate.Height = 24;
@@ -193,7 +193,7 @@ namespace PROJECT_ALPHA
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView3.Location = new System.Drawing.Point(108, 81);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.MinimumSize = new System.Drawing.Size(19, 20);
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
@@ -210,7 +210,7 @@ namespace PROJECT_ALPHA
             this.label7.Location = new System.Drawing.Point(26, 279);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 13);
+            this.label7.Size = new System.Drawing.Size(71, 15);
             this.label7.TabIndex = 17;
             this.label7.Text = "Saat            :";
             // 
@@ -218,7 +218,7 @@ namespace PROJECT_ALPHA
             // 
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(107, 279);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(465, 21);
             this.comboBox3.TabIndex = 19;
@@ -227,7 +227,7 @@ namespace PROJECT_ALPHA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(709, 585);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView3);
@@ -243,8 +243,9 @@ namespace PROJECT_ALPHA
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "randevuAl";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Randevu Kayıt Sistemi";
             this.Load += new System.EventHandler(this.randevuAl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
